@@ -1,17 +1,11 @@
-import 'package:flutter/widgets.dart';
+import 'package:mobx/mobx.dart';
+part 'app_conttroller.g.dart';
 
-import 'models/appconfig_model.dart';
+class AppController = _AppControllerBase with _$AppController;
 
-class AppController {
-  static final AppController instance = AppController._();
-
-  AppController._();
-
-  final AppConfigModel config = AppConfigModel();
-  bool get isDark => config.themeSwitch.value;
-  ValueNotifier<bool> get themeSwitch => config.themeSwitch;
-
-  changeTheme(bool value) {
-    themeSwitch.value = value;
-  }
+abstract class _AppControllerBase with Store {
+  @observable
+  bool isDark = false;
+  @action
+  changeIsDark(bool value) => isDark = value; 
 }

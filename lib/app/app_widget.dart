@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:scanner/app/app_conttroller.dart';
-import 'package:scanner/app/pages/home/home_page.dart';
+import 'app_conttroller.dart';
 
 class AppWidget extends StatefulWidget {
   @override
@@ -9,22 +9,24 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
+  final appController = Modular.get<AppController>();
+
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<bool>(
-      valueListenable: AppController.instance.themeSwitch,
-      builder: (context, isDark, child) {
+    return Observer(
+      builder: (_) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: "Scanner",
           theme: ThemeData(
             primarySwatch: Colors.orange,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            brightness: isDark ? Brightness.dark : Brightness.light,
+            brightness:
+                appController.isDark ? Brightness.dark : Brightness.light,
           ),
-          // initialRoute: '/',
+          initialRoute: '/',
           navigatorKey: Modular.navigatorKey,
-          // onGenerateRoute: Modular.generateRoute,
-          home: HomePage(),
+          onGenerateRoute: Modular.generateRoute,
         );
       },
     );
