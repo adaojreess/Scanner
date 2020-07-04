@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:scanner/app/components/camera_screen/camera_controller.dart';
 import 'package:scanner/app/components/camera_screen/camera_screen.widget.dart';
 import 'package:scanner/app/components/cuspom_app_bar/cutom_app_bar.dart';
+import 'package:scanner/app/components/camera_screen/take_picture_button_widget.dart';
 
 class CameraPage extends StatelessWidget {
   @override
@@ -20,6 +21,8 @@ class CameraPage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: TakePictureButtonWidget(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
