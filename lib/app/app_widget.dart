@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'app_conttroller.dart';
@@ -21,8 +22,9 @@ class _AppWidgetState extends State<AppWidget> {
           theme: ThemeData(
             primarySwatch: Colors.orange,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            brightness:
-                appController.isDark ? Brightness.dark : Brightness.light,
+            brightness: (appController.isDark != null
+                ? (appController.isDark ? Brightness.dark : Brightness.light)
+                : SchedulerBinding.instance.window.platformBrightness),
           ),
           initialRoute: '/',
           navigatorKey: Modular.navigatorKey,

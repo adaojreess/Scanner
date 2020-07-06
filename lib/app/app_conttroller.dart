@@ -5,7 +5,7 @@ class AppController = _AppControllerBase with _$AppController;
 
 abstract class _AppControllerBase with Store {
   @observable
-  bool isDark = false;
+  bool isDark;
   @action
   changeIsDark(bool value) => isDark = value; 
 }
